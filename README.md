@@ -6,42 +6,66 @@ I have used Node.js, Express.js, PostgreSql, prisma, cloudinary ,multer and jest
 
 # ROUTES
 
-HOSTED DOMAIN 
-
-https://contact-list-system.vercel.app
-
-LOCAL DOMAIN
-
-http://localhost:5000
-
+## HOSTED ROUTES 
 
 ADD NEW CONTACT
 
-{HOSTNAME}/api/v1/contacts  POST ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts  POST ROUTE (PUBLIC ROUTE)
 
 GET ALL CONTACTS
 
-{HOSTNAME}/api/v1/contacts  GET ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts  GET ROUTE (PUBLIC ROUTE)
 
 GET SINGLE CONTACT BY ID
 
-{HOSTNAME}/api/v1/contact/1  GET ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contact/1  GET ROUTE (PUBLIC ROUTE)
 
 SEARCH API
 
-{HOSTNAME}/api/v1/contacts/search?query=nameORnumber  GET ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts/search?query=nameORnumber  GET ROUTE (PUBLIC ROUTE)
 
 UPDATE CONTACT BY ID
 
-{HOSTNAME}/api/v1/contacts/1  PUT ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts/1  PUT ROUTE (PUBLIC ROUTE)
 
 DELETE CONTACT BY ID
 
-{HOSTNAME}/api/v1/contacts/1  DELETE ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts/1  DELETE ROUTE (PUBLIC ROUTE)
 
 EXPORT CONTACTS TO CSV
 
-{HOSTNAME}/api/v1/contacts/export/contacts  GET ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts/export/contacts  GET ROUTE (PUBLIC ROUTE)
+
+
+## LOCAL ROUTES
+
+ADD NEW CONTACT
+
+http://localhost:5000/api/v1/contacts  POST ROUTE (PUBLIC ROUTE)
+
+GET ALL CONTACTS
+
+http://localhost:5000/api/v1/contacts  GET ROUTE (PUBLIC ROUTE)
+
+GET SINGLE CONTACT BY ID
+
+http://localhost:5000/api/v1/contact/1  GET ROUTE (PUBLIC ROUTE)
+
+SEARCH API
+
+http://localhost:5000/api/v1/contacts/search?query=nameORnumber  GET ROUTE (PUBLIC ROUTE)
+
+UPDATE CONTACT BY ID
+
+http://localhost:5000/api/v1/contacts/1  PUT ROUTE (PUBLIC ROUTE)
+
+DELETE CONTACT BY ID
+
+http://localhost:5000/api/v1/contacts/1  DELETE ROUTE (PUBLIC ROUTE)
+
+EXPORT CONTACTS TO CSV
+
+http://localhost:5000/api/v1/contacts/export/contacts  GET ROUTE (PUBLIC ROUTE)
 
 
 # TO RUN THIS PROJECT
