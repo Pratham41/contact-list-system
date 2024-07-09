@@ -18,7 +18,7 @@ https://contact-list-system.vercel.app/api/v1/contacts  GET ROUTE (PUBLIC ROUTE)
 
 GET SINGLE CONTACT BY ID
 
-https://contact-list-system.vercel.app/api/v1/contact/1  GET ROUTE (PUBLIC ROUTE)
+https://contact-list-system.vercel.app/api/v1/contacts/1  GET ROUTE (PUBLIC ROUTE)
 
 SEARCH API
 
@@ -49,7 +49,7 @@ http://localhost:5000/api/v1/contacts  GET ROUTE (PUBLIC ROUTE)
 
 GET SINGLE CONTACT BY ID
 
-http://localhost:5000/api/v1/contact/1  GET ROUTE (PUBLIC ROUTE)
+http://localhost:5000/api/v1/contacts/1  GET ROUTE (PUBLIC ROUTE)
 
 SEARCH API
 
