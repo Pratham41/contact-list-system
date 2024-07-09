@@ -8,6 +8,10 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
+app.get("/",(req,res) => {
+    res.status(200).json("API is running!")
+})
+
 app.use("/api/v1", routes);
 
 app.use(notFound);
