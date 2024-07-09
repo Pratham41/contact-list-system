@@ -2,8 +2,8 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 const client = require("../config/db");
-const { createObjectCsvWriter } = require("csv-writer");
-const cloudinary = require('../config/cloudinary')
+const { createObjectCsvStringifier } = require("csv-writer");
+const cloudinary = require("../config/cloudinary");
 
 const parsePhoneNumbers = (phoneNumbers) => {
   if (typeof phoneNumbers === "string") {
@@ -18,13 +18,15 @@ const parsePhoneNumbers = (phoneNumbers) => {
 
 const uploadToCloudinary = async (buffer) => {
   return new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
-          if (error) {
-              reject(error);
-          } else {
-              resolve(result);
-          }
-      }).end(buffer);
+    cloudinary.uploader
+      .upload_stream({ resource_type: "image" }, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      })
+      .end(buffer);
   });
 };
 
@@ -162,7 +164,7 @@ const updateContact = async (req, res, next) => {
     });
 
     if (!contact) {
-      return res.status(404).json({ error: 'Contact not found' });
+      return res.status(404).json({ error: "Contact not found" });
     }
 
     if (req.file) {
@@ -201,7 +203,7 @@ const updateContact = async (req, res, next) => {
     });
 
     res.status(200).json({
-      message: 'Contact updated successfully',
+      message: "Contact updated successfully",
       contact: updatedContact,
     });
   } catch (error) {
@@ -236,11 +238,11 @@ const exportContactsToCSV = async (req, res, next) => {
       throw new Error("No contacts found");
     }
 
-    const csvWriter = createObjectCsvWriter({
-      path: "contacts.csv",
+    const csvStringifier = createObjectCsvStringifier({
       header: [
         { id: "id", title: "ID" },
         { id: "name", title: "Name" },
+        { id: "image", title: "Image" },
         { id: "phoneNumbers", title: "Phone Numbers" },
       ],
     });
@@ -248,19 +250,17 @@ const exportContactsToCSV = async (req, res, next) => {
     const records = contacts.map((contact) => ({
       id: contact.id,
       name: contact.name,
+      image: contact.image,
       phoneNumbers: contact.phoneNumbers.map((pn) => pn.number).join(", "),
     }));
 
-    await csvWriter.writeRecords(records);
-    const filePath = path.resolve("contacts.csv");
-    res.download(filePath, "contacts.csv", (err) => {
-      if (err) {
-        console.error("Error downloading file:", err);
-        next(err);
-      } else {
-        console.log("File downloaded successfully");
-      }
-    });
+    const csv =
+      csvStringifier.getHeaderString() +
+      csvStringifier.stringifyRecords(records);
+
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader("Content-Disposition", "attachment; filename=contacts.csv");
+    res.status(200).end(csv);
   } catch (error) {
     console.error("Error exporting contacts to CSV:", error);
     next(error);
